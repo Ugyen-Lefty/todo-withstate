@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": 2,
+      "post": "Hit the Gym now",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "post": "Code now or later",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "post": "Go grocery Shopping and get food",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "post": "Study and work",
+      "completed": false
+    },
+    {
+      "id": 7,
+      "post": "this is a new task",
+      "completed": false
+    }
+  ]
+}

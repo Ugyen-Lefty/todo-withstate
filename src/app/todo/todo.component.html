@@ -1,0 +1,51 @@
+<div class="row d-flex">
+  <div class="col-md-6 mx-auto">
+    <div class="shadow mt-5 bg-white rounded">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>To do</h3>
+        </div>
+        <div class="pt-3 card-body">
+        <form (submit)="addTodo(newTodoForm)" class="d-flex" #newTodoForm="ngForm">
+          <input type="text" class="form-control" #posts name="posts" placeholder="Add Task" value="" id="posts" ngModel>
+          <button class="btn btn-success mx-3" onclick="()=> posts.value = ''" type="submit">Add</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row d-flex">
+  <div class="col-md-6 mx-auto">
+    <div class="shadow mt-5 bg-white rounded">
+      <div class="card mb-5 text-center">
+        <div class="card-header">
+          <h3>Your Tasks</h3>
+          <input #searchBox class="form-control my-3" id="search-box" (input)="search(searchBox.value)"/>
+        </div>
+        <form #updateTodoForm="ngForm">
+          <ng-container *ngIf="todoList$ | async as todoList">
+            <!-- NGIF task is there display this -->
+            <div class="pt-3 card-body" *ngIf="todoList.length > 0">
+              <div class="d-flex" *ngFor="let todos of todoList" style="background-color: white;">
+                <input hidden #ids value="{{todos.id}}" id="id"/>
+                <!-- <input class="my-auto" type="checkbox" #completed name="completed" id="completed"> -->
+                <!-- <input class="my-auto" type="checkbox" #completed ngModel ng-change="check(check)" ng-true-value="Completed" ng-false-value="Not completed"/> -->
+                <!-- <input class="my-auto" #completed id="completed" type="checkbox" [checked]="saveCompleted" (change)="onCompleted(completed.checked)" /> -->
+                <input class="my-auto" #completed id="completed" type="checkbox" [checked]="todos.completed" (change)="todoComplete(todos.id,$event,updatedPost.value)"/>
+                <!-- (change)="todoComplete(+ids.value, updatedPost.value);" -->
+                <input class="form-control my-3 mx-3" #updatedPost id="post" name="post" style="background-color: white;" value="{{ todos.post }}" [style.text-decoration]="completed.checked? 'line-through':''" />
+                <button class="btn btn-danger my-3" (click)="deleteTodo(+ids.value);" type="submit">X</button>
+                <button class="btn btn-success m-3" (click)="updateTodo(+ids.value, updatedPost.value);" type="submit">Edit</button>
+              </div>
+            </div>
+            <!-- -Else display this -->
+            <div class="pt-5 card-body d-flex" *ngIf="todoList.length == 0">
+              <p class="form-control">No tasks</p>
+            </div>
+          </ng-container>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

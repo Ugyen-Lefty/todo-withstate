@@ -1,0 +1,13 @@
+*{
+    margin:0px;
+}
+
+.card form, input, h3{
+    background-color: #fff;
+}
+.card-body {
+    background-color: #fff;
+}
+.form-control {
+    background-color: #fff;
+}
